@@ -7,7 +7,7 @@ fx_cfd_trading_analytics/
 │   ├── trading_signals.csv
 │   ├── trade_performance.csv
 │
-├── sql/
+├── sql/ 
 │   ├── create_tables.sql
 │   ├── analysis_queries.sql
 │
