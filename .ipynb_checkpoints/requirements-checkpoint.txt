@@ -1,1 +1,7 @@
-
+pandas
+numpy
+yfinance
+matplotlib
+duckdb
+jupyter
+notebook
