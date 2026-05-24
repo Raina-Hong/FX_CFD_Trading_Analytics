@@ -163,10 +163,9 @@ ORDER BY sharpe_ratio_after_cost DESC;
 ```
 
 ---
-
 ## Tableau Dashboard
 
-The Tableau dashboard provides a visual summary of the strategy performance and execution cost analysis.
+The Tableau dashboard summarises the main results from the backtest and cost analysis. I used it to compare returns, drawdowns, Sharpe ratios, execution costs, and slippage patterns across different assets.
 
 Dashboard components include:
 
@@ -176,9 +175,11 @@ Dashboard components include:
 - Total execution cost by asset
 - Average slippage versus 20-day volatility
 
-![Cumulative Return After Cost](dashboard/cumulative_return_after_cost.png)
+**Interactive dashboard:** [View on Tableau Public](https://public.tableau.com/views/FX_CFD_Trading_Performance_Dashboard/FXCFDTradingPerformanceDashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
-The dashboard helps compare performance across assets and identify whether returns are driven by strong price trends, high volatility, or execution cost differences.
+![FX & CFD Trading Performance Dashboard](dashboard/FX_CFD_Trading_Performance_Dashboard.png)
+
+The dashboard makes it easier to see the main pattern: Gold had the strongest after-cost performance, AUD/USD struggled, and NASDAQ 100 had relatively high execution costs.
 
 ---
 
