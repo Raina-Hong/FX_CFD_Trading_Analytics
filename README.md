@@ -1,7 +1,5 @@
 # FX & CFD Trading Performance Analytics
 
-# FX & CFD Trading Performance Analytics
-
 ## Project Overview
 
 I built this project to analyse how a simple trading strategy performs across several FX, commodity, and equity index markets after taking trading costs into account.
