@@ -1,59 +1,27 @@
 # FX & CFD Trading Performance Analytics
 
-## Project Overview
-Briefly explain what this project does.
+## 1. Project Overview
 
-## Objectives
-- Download and clean historical OHLCV data
-- Generate trading signals
-- Simulate spread, slippage, and transaction costs
-- Calculate performance metrics
-- Use SQL for trading performance analysis
-- Build a Tableau dashboard
+## 2. Business and Trading Objective
 
-## Assets Covered
-- EUR/USD
-- AUD/USD
-- Gold
-- NASDAQ 100
-- S&P 500
+## 3. Data Source and Assets Covered
 
-## Tools Used
-- Python
-- Pandas
-- NumPy
-- DuckDB
-- SQL
-- Tableau
-- Jupyter Notebook
+## 4. Methodology
 
-## Methodology
-Explain:
-1. Data collection
-2. Data cleaning
-3. Signal generation
-4. Cost simulation
-5. Performance metrics
-6. SQL analysis
-7. Dashboard design
+## 5. Trading Strategy Logic
 
-## Key Metrics
-- Cumulative Return
-- Sharpe Ratio
-- Maximum Drawdown
-- Win Rate
-- Exposure
-- Turnover
-- Transaction Cost
-- Slippage Cost
-- Total Execution Cost
+## 6. Transaction Cost and Slippage Simulation
 
-## Dashboard Preview
-https://public.tableau.com/views/FX_CFD_Trading_Performance_Dashboard/FXCFDTradingPerformanceDashboard?:language=zh-CN&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link
+## 7. Performance Metrics
 
-## Key Findings
-Summarise 3–5 findings.
+## 8. SQL-Based Analysis
 
-## How to Run
-pip install -r requirements.txt
-Open notebooks/01_end_to_end_trading_analytics.ipynb
+## 9. Tableau Dashboard
+
+## 10. Key Findings
+
+## 11. Project Structure
+
+## 12. How to Run
+
+## 13. Limitations and Future Improvements
