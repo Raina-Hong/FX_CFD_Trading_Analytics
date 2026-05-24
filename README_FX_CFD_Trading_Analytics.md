@@ -8,6 +8,7 @@ The purpose of this project is not to build a production trading system, but to 
 
 ![FX & CFD Trading Performance Dashboard](dashboard/FX_CFD_Trading_Performance_Dashboard.png)
 
+---
 
 ## Business and Trading Objective
 
@@ -21,6 +22,7 @@ In real trading environments, a strategy that looks profitable before costs may 
 
 This project is designed from the perspective of a trading analyst or quant analyst supporting desk-level performance review, cost attribution, and strategy monitoring.
 
+---
 
 ## Data Source and Assets Covered
 
@@ -35,6 +37,8 @@ Historical daily OHLCV data is downloaded using `yfinance`.
 | S&P 500 | `^GSPC` | Equity Index |
 
 The dataset includes daily open, high, low, close, volume, returns, rolling volatility, moving averages, trading signals, strategy returns, costs, and drawdown metrics.
+
+---
 
 ## Methodology
 
@@ -64,6 +68,8 @@ The project follows a full analytics workflow:
 8. **Dashboard Visualisation**  
    Build a Tableau dashboard to monitor cumulative return, drawdown, Sharpe ratio, execution cost, slippage, and volatility.
 
+---
+
 ## Trading Strategy Logic
 
 The strategy uses a simple moving-average trend-following rule:
@@ -80,6 +86,8 @@ strategy_return = position * daily_return
 ```
 
 This makes the backtest more realistic because the model only trades on information that would have been available at the time.
+
+---
 
 ## Transaction Cost and Slippage Simulation
 
@@ -100,6 +108,8 @@ strategy_return_after_cost = strategy_return_before_cost - total_cost
 
 This step is important because trading costs can materially reduce profitability, especially for strategies with frequent turnover or assets with high volatility.
 
+---
+
 ## Performance Metrics
 
 The project evaluates each asset using the following metrics:
@@ -115,6 +125,8 @@ The project evaluates each asset using the following metrics:
 | Exposure | Percentage of time the strategy is invested |
 | Turnover | Number of position changes |
 | Total Execution Cost | Total cost from spread, transaction cost, and slippage |
+
+---
 
 ## SQL-Based Analysis
 
@@ -145,6 +157,8 @@ FROM performance_summary
 ORDER BY sharpe_ratio_after_cost DESC;
 ```
 
+---
+
 ## Tableau Dashboard
 
 The Tableau dashboard provides a visual summary of the strategy performance and execution cost analysis.
@@ -160,6 +174,8 @@ Dashboard components include:
 ![Cumulative Return After Cost](dashboard/cumulative_return_after_cost.png)
 
 The dashboard helps compare performance across assets and identify whether returns are driven by strong price trends, high volatility, or execution cost differences.
+
+---
 
 ## Key Findings
 
@@ -177,6 +193,8 @@ The dashboard helps compare performance across assets and identify whether retur
 
 5. **Volatility was linked to higher slippage cost.**  
    Assets with higher average 20-day volatility generally experienced higher slippage costs, which is consistent with the idea that execution quality deteriorates during more volatile market conditions.
+
+---
 
 ## Project Structure
 
@@ -203,6 +221,8 @@ FX_CFD_Trading_Analytics/
 └── reports/
     └── FX_CFD_Trading_Analytics_Report.pdf
 ```
+
+---
 
 ## How to Run
 
@@ -246,6 +266,8 @@ Open the Tableau packaged workbook:
 dashboard/FX_CFD_Trading_Performance_Dashboard.twbx
 ```
 
+---
+
 ## Limitations
 
 This project is designed for analytics and portfolio demonstration purposes. It has several limitations:
@@ -255,6 +277,8 @@ This project is designed for analytics and portfolio demonstration purposes. It 
 - The backtest does not include leverage, margin requirements, overnight financing, tax, or funding costs.
 - The strategy parameters are fixed and are not optimised through walk-forward testing.
 - Daily data is used, so the project does not capture intraday execution dynamics.
+
+---
 
 ## Future Improvements
 
@@ -267,6 +291,8 @@ Potential extensions include:
 - Use real spread and tick-level data to model execution quality more accurately.
 - Build an automated reporting pipeline using Python, DuckDB, and Tableau extracts.
 
+---
+
 ## Skills Demonstrated
 
 - Financial time-series analysis
@@ -276,6 +302,8 @@ Potential extensions include:
 - SQL-based trading analytics with DuckDB
 - Tableau dashboard design
 - Python data processing with Pandas and NumPy
+
+---
 
 ## Disclaimer
 
