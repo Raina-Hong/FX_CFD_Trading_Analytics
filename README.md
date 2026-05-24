@@ -1,10 +1,16 @@
 # FX & CFD Trading Performance Analytics
 
+# FX & CFD Trading Performance Analytics
+
 ## Project Overview
 
-This project builds an end-to-end trading performance analytics workflow for FX pairs, gold, and equity index CFDs. It uses Python to collect and clean historical market data, generate moving-average trading signals, simulate transaction costs and slippage, evaluate after-cost trading performance, run SQL-based analysis with DuckDB, and visualise the results in Tableau.
+I built this project to analyse how a simple trading strategy performs across several FX, commodity, and equity index markets after taking trading costs into account.
 
-The purpose of this project is not to build a production trading system, but to demonstrate how a trading analyst can evaluate strategy performance after realistic execution frictions such as spread, slippage, and transaction costs.
+The project uses Python to download and prepare historical price data, generate moving-average trading signals, and calculate strategy returns before and after estimated spread, transaction cost, and slippage. I also used DuckDB SQL for performance and cost analysis, and built a Tableau dashboard to make the results easier to compare across assets.
+
+This is not intended to be a live trading system. The main goal is to show how trading performance can change once execution costs are included, and how Python, SQL, and Tableau can be used together in a repeatable trading analytics workflow.
+
+**Dashboard:** [View Interactive Tableau Dashboard](https://public.tableau.com/views/FX_CFD_Trading_Performance_Dashboard/FXCFDTradingPerformanceDashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
 ![FX & CFD Trading Performance Dashboard](dashboard/FX_CFD_Trading_Performance_Dashboard.png)
 
@@ -12,15 +18,17 @@ The purpose of this project is not to build a production trading system, but to 
 
 ## Business and Trading Objective
 
-In real trading environments, a strategy that looks profitable before costs may become much less attractive after considering execution costs. This project answers the following questions:
+A trading strategy can look profitable on paper, but the result may change once spread, slippage, and transaction costs are included. This project focuses on the after-cost performance of a simple moving-average strategy across different asset classes.
 
-- Which assets delivered the strongest after-cost performance?
-- How much did transaction costs and slippage reduce strategy returns?
-- Which assets had the highest drawdown and execution cost?
-- How did volatility affect slippage and trading cost?
-- How can Python, SQL, and Tableau be combined to build a repeatable trading performance monitoring workflow?
+The main questions I wanted to answer were:
 
-This project is designed from the perspective of a trading analyst or quant analyst supporting desk-level performance review, cost attribution, and strategy monitoring.
+- Which assets performed best after trading costs?
+- How much did spread, transaction cost, and slippage reduce returns?
+- Which assets had larger drawdowns or higher execution costs?
+- Did higher volatility lead to higher slippage?
+- How can the results be monitored using Python, SQL, and Tableau?
+
+I designed the project as a small trading analytics case study, similar to the type of work a trading analyst or quant analyst might do when reviewing strategy performance and execution quality.
 
 ---
 
@@ -42,31 +50,31 @@ The dataset includes daily open, high, low, close, volume, returns, rolling vola
 
 ## Methodology
 
-The project follows a full analytics workflow:
+The project follows the main steps of a trading analytics workflow:
 
-1. **Data Collection**  
-   Download historical daily market data for FX pairs, gold, and equity indices.
+1. **Collect market data**  
+   Download daily OHLCV data for FX pairs, gold, and equity indices.
 
-2. **Data Cleaning and Feature Engineering**  
-   Clean raw OHLCV data and calculate daily returns, log returns, 20-day rolling volatility, and moving averages.
+2. **Prepare the dataset**  
+   Clean the raw data and calculate daily returns, log returns, rolling volatility, and moving averages.
 
-3. **Trading Signal Generation**  
-   Generate long-only trend-following signals using a moving-average crossover rule.
+3. **Generate trading signals**  
+   Use a simple moving-average crossover rule to decide when the strategy should be invested.
 
-4. **Backtesting Logic**  
-   Apply lagged trading positions to avoid look-ahead bias and calculate before-cost strategy returns.
+4. **Run the backtest**  
+   Apply a one-day lag to the signal to avoid look-ahead bias, then calculate strategy returns before costs.
 
-5. **Transaction Cost and Slippage Simulation**  
-   Estimate spread cost, transaction cost, slippage cost, and total execution cost.
+5. **Add trading costs**  
+   Estimate spread cost, transaction cost, and slippage cost, then deduct them from strategy returns.
 
-6. **Performance Evaluation**  
-   Calculate cumulative return, annualised return, annualised volatility, Sharpe ratio, maximum drawdown, win rate, exposure, turnover, and total cost.
+6. **Evaluate performance**  
+   Compare assets using cumulative return, annualised return, volatility, Sharpe ratio, maximum drawdown, win rate, exposure, turnover, and total cost.
 
-7. **SQL-Based Analysis**  
-   Use DuckDB SQL to analyse asset-level performance, annual returns, cost impact, and high-volatility trading behaviour.
+7. **Analyse results with SQL**  
+   Use DuckDB SQL to summarise performance, cost impact, annual returns, and high-volatility periods.
 
-8. **Dashboard Visualisation**  
-   Build a Tableau dashboard to monitor cumulative return, drawdown, Sharpe ratio, execution cost, slippage, and volatility.
+8. **Build a dashboard**  
+   Create a Tableau dashboard to compare return, drawdown, Sharpe ratio, execution cost, slippage, and volatility across assets.
 
 ---
 
@@ -179,20 +187,20 @@ The dashboard helps compare performance across assets and identify whether retur
 
 ## Key Findings
 
-1. **Gold produced the strongest after-cost performance.**  
-   Gold achieved the highest cumulative return after cost at approximately **79.7%**, with the highest Sharpe ratio of around **0.98**. This suggests that the moving-average strategy worked better on assets with stronger trend-following behaviour.
+1. **Gold was the strongest performer after costs.**  
+   Gold reached an after-cost cumulative return of around **79.7%** and had the highest Sharpe ratio, about **0.98**. This suggests the moving-average rule worked better in a market with stronger trending behaviour.
 
-2. **NASDAQ 100 generated positive returns but also had the highest execution cost.**  
-   NASDAQ 100 achieved an after-cost cumulative return of approximately **31.5%**, but also had the highest total execution cost at around **0.0424**. This shows that high-return assets may still be meaningfully affected by slippage and trading costs.
+2. **NASDAQ 100 also performed well, but costs were higher.**  
+   NASDAQ 100 had an after-cost cumulative return of around **31.5%**, but it also had the highest total execution cost, about **0.0424**. This shows why it is important to check both return and cost, not just the final profit number.
 
-3. **AUD/USD underperformed after costs.**  
-   AUD/USD recorded an after-cost cumulative return of approximately **-31.6%** and a negative Sharpe ratio of around **-1.08**, indicating that the moving-average strategy was not effective for this asset over the tested period.
+3. **AUD/USD did not work well with this strategy.**  
+   AUD/USD ended with an after-cost cumulative return of around **-31.6%** and a Sharpe ratio of about **-1.08**. In this period, the moving-average rule did not capture useful trends for this pair.
 
-4. **Transaction costs reduced performance across all assets.**  
-   Every asset showed lower after-cost returns compared with before-cost returns, highlighting the importance of including realistic execution assumptions in trading analytics.
+4. **Trading costs mattered across all assets.**  
+   After-cost returns were lower than before-cost returns for every asset. This is a useful reminder that backtests can look too optimistic if execution costs are ignored.
 
-5. **Volatility was linked to higher slippage cost.**  
-   Assets with higher average 20-day volatility generally experienced higher slippage costs, which is consistent with the idea that execution quality deteriorates during more volatile market conditions.
+5. **Higher volatility was generally associated with higher slippage.**  
+   The slippage analysis showed that more volatile assets tended to have higher average slippage costs, which matches the idea that execution becomes harder in unstable market conditions.
 
 ---
 
