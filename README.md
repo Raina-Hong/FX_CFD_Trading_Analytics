@@ -10,7 +10,6 @@ This is not intended to be a live trading system. The main goal is to show how t
 
 **Dashboard:** [View Interactive Tableau Dashboard](https://public.tableau.com/views/FX_CFD_Trading_Performance_Dashboard/FXCFDTradingPerformanceDashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
-![FX & CFD Trading Performance Dashboard](dashboard/FX_CFD_Trading_Performance_Dashboard.png)
 
 ---
 
