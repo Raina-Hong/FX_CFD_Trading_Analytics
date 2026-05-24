@@ -177,8 +177,6 @@ Dashboard components include:
 
 **Interactive dashboard:** [View on Tableau Public](https://public.tableau.com/views/FX_CFD_Trading_Performance_Dashboard/FXCFDTradingPerformanceDashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
-![FX & CFD Trading Performance Dashboard](dashboard/FX_CFD_Trading_Performance_Dashboard.png)
-
 The dashboard makes it easier to see the main pattern: Gold had the strongest after-cost performance, AUD/USD struggled, and NASDAQ 100 had relatively high execution costs.
 
 ---
