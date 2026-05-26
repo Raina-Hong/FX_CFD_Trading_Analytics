@@ -1,0 +1,5 @@
+dataset,rows,columns,start_date,end_date,assets,duplicate_rows
+raw_market_data,6362,8,2021-01-01,2025-12-30,5,0
+processed_market_data,6117,13,2021-03-11,2025-12-30,5,0
+trading_signals,6117,16,2021-03-11,2025-12-30,5,0
+trade_performance,6117,27,2021-03-11,2025-12-30,5,0

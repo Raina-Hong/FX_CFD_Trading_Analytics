@@ -1,0 +1,6 @@
+asset,total_records,invalid_high_records,invalid_low_records,non_positive_price_records,total_ohlc_issues,ohlc_issue_rate,risk_level
+AUDUSD,1299,25,21,0,46,0.03541185527328714,High
+EURUSD,1299,14,16,0,30,0.023094688221709007,High
+GOLD,1256,0,0,0,0,0.0,Low
+NASDAQ100,1254,0,0,0,0,0.0,Low
+SP500,1254,0,0,0,0,0.0,Low

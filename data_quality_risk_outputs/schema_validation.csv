@@ -1,0 +1,5 @@
+dataset,missing_required_columns,extra_columns_count,schema_status
+raw_market_data,None,0,PASS
+processed_market_data,None,0,PASS
+trading_signals,None,8,PASS
+trade_performance,None,15,PASS

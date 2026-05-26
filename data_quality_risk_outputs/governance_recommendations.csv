@@ -1,0 +1,8 @@
+control_area,finding,recommendation
+Schema validation,0 dataset(s) failed required-column checks.,Maintain a data dictionary and validate required fields before running analytics.
+Uniqueness control,0 duplicate Date-Asset records detected.,Enforce Date-Asset as a unique key for market and performance tables.
+Market data integrity,76 OHLC price integrity issues detected.,Flag invalid prices before calculating returns or trading signals.
+Return reconciliation,0 return calculation mismatches detected.,Recalculate returns independently from Close prices as a pipeline control.
+Signal governance,0 signal logic mismatches detected.,Document strategy rules and reconcile generated signals against expected logic.
+Cost and PnL control,0 cost/PnL reconciliation failures detected.,Ensure transaction cost and slippage are consistently deducted from gross strategy returns.
+Technical risk monitoring,6117 technical risk events flagged for review.,"Review extreme return, high-cost, and severe drawdown days before interpreting backtest performance."

@@ -1,0 +1,6 @@
+asset,checked_records,signal_mismatch_count,signal_mismatch_rate,risk_level
+AUDUSD,1250,0,0.0,Low
+EURUSD,1250,0,0.0,Low
+GOLD,1207,0,0.0,Low
+NASDAQ100,1205,0,0.0,Low
+SP500,1205,0,0.0,Low
