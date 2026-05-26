@@ -5,4 +5,4 @@ Market data integrity,76 OHLC price integrity issues detected.,Flag invalid pric
 Return reconciliation,0 return calculation mismatches detected.,Recalculate returns independently from Close prices as a pipeline control.
 Signal governance,0 signal logic mismatches detected.,Document strategy rules and reconcile generated signals against expected logic.
 Cost and PnL control,0 cost/PnL reconciliation failures detected.,Ensure transaction cost and slippage are consistently deducted from gross strategy returns.
-Technical risk monitoring,6117 technical risk events flagged for review.,"Review extreme return, high-cost, and severe drawdown days before interpreting backtest performance."
+Technical risk monitoring,70 technical risk events flagged for review.,"Review extreme return, high-cost, and severe drawdown days before interpreting backtest performance."
