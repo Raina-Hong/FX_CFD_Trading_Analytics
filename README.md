@@ -8,7 +8,7 @@ The goal is to show not only basic backtesting, but also the ability to build a 
 
 **Tableau Dashboard:** [View Dashboard](https://public.tableau.com/views/FX_CFD_Trading_Performance_Dashboard/FXCFDTradingPerformanceDashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
-**Detailed Report:** For a more detailed explanation of the methodology, results, risk interpretation, and stakeholder communication, please see [`FX_CFD_Trading_Analytics_Report.md`](docs/FX_CFD_Trading_Analytics_Report.md).
+**Detailed Report:** For a more detailed explanation of the methodology, results, risk interpretation, and stakeholder communication, please see [FX_CFD_Trading_Analytics_Report.md](docs/FX_CFD_Trading_Analytics_Report.md).
 
 > This project is for portfolio and educational purposes only. It is not financial advice.
 
