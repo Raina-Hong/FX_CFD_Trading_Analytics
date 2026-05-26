@@ -116,18 +116,3 @@ This turns the project from a simple backtest into a trading analytics, risk con
 
 ---
 
-## Resume Positioning
-
-This project is suitable for roles such as:
-
-- Trading Operations Analyst
-- Quant Trading Analyst
-- Risk Analyst
-- Financial Data Analyst
-- Market Data Analyst
-- Data Governance Analyst
-- Data Analyst in financial services
-
-Suggested resume bullet:
-
-> Built an end-to-end FX and CFD trading analytics workflow using Python, SQL, DuckDB, and Tableau, integrating after-cost performance analysis, transaction cost simulation, drawdown monitoring, and data governance controls for market data integrity and PnL reconciliation.
