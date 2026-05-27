@@ -1,0 +1,55 @@
+trade_id,asset,exception_type,severity,description
+T00002,SP500,Settlement Not Completed,High,Settlement status is FAILED.
+T00005,GOLD,Settlement Not Completed,High,Settlement status is PENDING.
+T00009,AUDUSD,Settlement Not Completed,High,Settlement status is FAILED.
+T00010,NASDAQ100,Settlement Not Completed,High,Settlement status is PENDING.
+T00012,GOLD,Settlement Not Completed,High,Settlement status is PENDING.
+T00014,EURUSD,Settlement Not Completed,High,Settlement status is FAILED.
+T00018,EURUSD,Settlement Delay,Medium,Settlement lag is 7.0 days.
+T00020,NASDAQ100,Settlement Not Completed,High,Settlement status is PENDING.
+T00021,AUDUSD,Settlement Not Completed,High,Settlement status is FAILED.
+T00024,NASDAQ100,Settlement Delay,Medium,Settlement lag is 7.0 days.
+T00027,NASDAQ100,Settlement Not Completed,High,Settlement status is FAILED.
+T00028,GOLD,Settlement Not Completed,High,Settlement status is PENDING.
+T00033,EURUSD,Settlement Not Completed,High,Settlement status is PENDING.
+T00036,EURUSD,Settlement Not Completed,High,Settlement status is FAILED.
+T00037,AUDUSD,Settlement Not Completed,High,Settlement status is PENDING.
+T00038,EURUSD,Settlement Delay,Medium,Settlement lag is 7.0 days.
+T00039,SP500,Settlement Not Completed,High,Settlement status is PENDING.
+T00043,SP500,Settlement Not Completed,High,Settlement status is FAILED.
+T00043,SP500,Settlement Delay,Medium,Settlement lag is 8.0 days.
+T00045,EURUSD,Settlement Not Completed,High,Settlement status is PENDING.
+T00048,SP500,Settlement Not Completed,High,Settlement status is PENDING.
+T00052,AUDUSD,Settlement Not Completed,High,Settlement status is FAILED.
+T00053,NASDAQ100,Settlement Not Completed,High,Settlement status is PENDING.
+T00055,EURUSD,Missing Settlement Record,High,Confirmed or internal trade has no settlement record.
+T00059,NASDAQ100,Settlement Not Completed,High,Settlement status is FAILED.
+T00060,NASDAQ100,Missing Settlement Record,High,Confirmed or internal trade has no settlement record.
+T00061,SP500,Settlement Not Completed,High,Settlement status is FAILED.
+T00064,EURUSD,Settlement Not Completed,High,Settlement status is FAILED.
+T00065,GOLD,Settlement Not Completed,High,Settlement status is FAILED.
+T00066,AUDUSD,Settlement Not Completed,High,Settlement status is PENDING.
+T00071,AUDUSD,Settlement Not Completed,High,Settlement status is FAILED.
+T00072,AUDUSD,Settlement Not Completed,High,Settlement status is PENDING.
+T00074,GOLD,Settlement Not Completed,High,Settlement status is PENDING.
+T00075,AUDUSD,Settlement Not Completed,High,Settlement status is PENDING.
+T00077,GOLD,Settlement Not Completed,High,Settlement status is PENDING.
+T00078,AUDUSD,Missing Settlement Record,High,Confirmed or internal trade has no settlement record.
+T00086,NASDAQ100,Settlement Not Completed,High,Settlement status is FAILED.
+T00087,SP500,Settlement Not Completed,High,Settlement status is PENDING.
+T00088,AUDUSD,Settlement Not Completed,High,Settlement status is FAILED.
+T00090,GOLD,Settlement Not Completed,High,Settlement status is PENDING.
+T00092,EURUSD,Settlement Not Completed,High,Settlement status is PENDING.
+T00094,EURUSD,Settlement Not Completed,High,Settlement status is PENDING.
+T00096,NASDAQ100,Missing Settlement Record,High,Confirmed or internal trade has no settlement record.
+T00097,SP500,Settlement Not Completed,High,Settlement status is PENDING.
+T00097,SP500,Settlement Delay,Medium,Settlement lag is 7.0 days.
+T00100,NASDAQ100,Settlement Not Completed,High,Settlement status is FAILED.
+T00102,GOLD,Settlement Not Completed,High,Settlement status is PENDING.
+T00103,EURUSD,Settlement Not Completed,High,Settlement status is FAILED.
+T00109,AUDUSD,Settlement Not Completed,High,Settlement status is FAILED.
+T00111,NASDAQ100,Settlement Not Completed,High,Settlement status is PENDING.
+T00113,AUDUSD,Settlement Not Completed,High,Settlement status is FAILED.
+T00115,SP500,Settlement Not Completed,High,Settlement status is PENDING.
+T00117,SP500,Settlement Not Completed,High,Settlement status is FAILED.
+T00118,AUDUSD,Missing Settlement Record,High,Confirmed or internal trade has no settlement record.

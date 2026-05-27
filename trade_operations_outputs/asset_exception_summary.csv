@@ -1,0 +1,25 @@
+asset,exception_stage,exception_type,severity,exception_count
+AUDUSD,Settlement,Settlement Not Completed,High,11
+AUDUSD,Trade Confirmation,Quantity Mismatch,High,3
+AUDUSD,Settlement,Missing Settlement Record,High,2
+AUDUSD,Trade Confirmation,Missing Broker Confirmation,High,2
+AUDUSD,Trade Confirmation,PnL Variance,Medium,2
+AUDUSD,Trade Confirmation,Price Discrepancy,Medium,1
+EURUSD,Settlement,Settlement Not Completed,High,8
+EURUSD,Settlement,Settlement Delay,Medium,2
+EURUSD,Trade Confirmation,Price Discrepancy,Medium,2
+EURUSD,Settlement,Missing Settlement Record,High,1
+EURUSD,Trade Confirmation,Missing Broker Confirmation,High,1
+EURUSD,Trade Confirmation,PnL Variance,Medium,1
+GOLD,Settlement,Settlement Not Completed,High,8
+GOLD,Trade Confirmation,Price Discrepancy,Medium,2
+GOLD,Trade Confirmation,PnL Variance,Medium,1
+NASDAQ100,Settlement,Settlement Not Completed,High,8
+NASDAQ100,Settlement,Missing Settlement Record,High,2
+NASDAQ100,Trade Confirmation,Missing Broker Confirmation,High,2
+NASDAQ100,Trade Confirmation,PnL Variance,Medium,2
+NASDAQ100,Trade Confirmation,Quantity Mismatch,High,2
+NASDAQ100,Settlement,Settlement Delay,Medium,1
+SP500,Settlement,Settlement Not Completed,High,9
+SP500,Settlement,Settlement Delay,Medium,2
+SP500,Trade Confirmation,Quantity Mismatch,High,1

@@ -1,0 +1,5 @@
+exception_type,severity,exception_count
+PnL Variance,Medium,6
+Quantity Mismatch,High,6
+Missing Broker Confirmation,High,5
+Price Discrepancy,Medium,5

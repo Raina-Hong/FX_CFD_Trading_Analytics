@@ -1,120 +1,78 @@
-# FX & CFD Trading Analytics, Risk Control & Data Governance
+# FX & CFD Trading Operations Analytics
 
-## Project Summary
+A portfolio project that uses **Python, SQL, and Tableau** to analyse trading performance, validate data quality, and simulate trade operations reconciliation across FX, commodity, and equity index instruments.
 
-This project is an end-to-end trading analytics portfolio project covering FX, commodity, and equity index markets. It evaluates a moving-average trading strategy, simulates transaction costs and slippage, analyses after-cost performance, and adds a dedicated data quality and technical risk assessment layer.
-
-The goal is to show not only basic backtesting, but also the ability to build a reliable trading analytics workflow with risk control and data governance checks.
-
-**Tableau Dashboard:** [View Dashboard](https://public.tableau.com/views/FX_CFD_Trading_Performance_Dashboard/FXCFDTradingPerformanceDashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
-
-**Detailed Report:** For a more detailed explanation of the methodology, results, risk interpretation, and stakeholder communication, please see [FX_CFD_Trading_Analytics_Report.md](docs/FX_CFD_Trading_Analytics_Report.md).
+**Instruments covered:** EUR/USD, AUD/USD, Gold, NASDAQ 100, S&P 500  
+**Dashboard:** [View Tableau Dashboard](https://public.tableau.com/views/FX_CFD_Trading_Performance_Dashboard/FXCFDTradingPerformanceDashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)  
+**Full report:** [`docs/FX_CFD_Trading_Analytics_Report.md`](docs/FX_CFD_Trading_Analytics_Report.md)
 
 > This project is for portfolio and educational purposes only. It is not financial advice.
 
 ---
 
-## What This Project Demonstrates
+## Project Overview
 
-- Built a Python-based trading analytics pipeline for EUR/USD, AUD/USD, Gold, NASDAQ 100, and S&P 500.
-- Generated moving-average trading signals using MA20 and MA50 rules.
-- Calculated strategy returns, cumulative returns, volatility, Sharpe ratio, win rate, turnover, exposure, and maximum drawdown.
-- Simulated spread, transaction cost, and slippage to evaluate after-cost performance.
-- Used DuckDB SQL to analyse trading performance, cost impact, and asset-level risk metrics.
-- Built a Tableau dashboard for stakeholder-facing trading performance monitoring.
-- Added a data governance notebook to validate data quality, signal logic, cost calculation, and after-cost PnL consistency.
+This project was designed to show how trading data can be collected, cleaned, analysed, validated, and monitored in a practical trading operations workflow.
+
+The workflow has three parts:
+
+1. **Trading Performance Analytics**  
+   Builds a moving-average trading strategy, simulates transaction costs and slippage, and evaluates performance using return, drawdown, Sharpe ratio, turnover, and asset-level metrics.
+
+2. **Data Quality & Risk Assessment**  
+   Adds governance checks for schema consistency, missing values, duplicate records, OHLC integrity, return calculation, signal logic, transaction cost, and after-cost PnL reconciliation.
+
+3. **Trade Operations Reconciliation**  
+   Simulates internal trade records, broker confirmations, and settlement records, then flags missing confirmations, quantity mismatches, price discrepancies, PnL variances, failed settlements, pending settlements, and settlement delays.
 
 ---
 
-## Tech Stack
+## Tools & Skills
 
-| Area | Tools |
+| Area | Tools / Skills |
 |---|---|
-| Data Processing | Python, Pandas, NumPy |
-| Market Data | yfinance |
+| Programming | Python, Pandas, NumPy |
 | SQL Analysis | DuckDB, SQL |
-| Risk & Performance Analytics | Sharpe Ratio, Drawdown, Volatility, Turnover, Slippage, Transaction Cost |
-| Data Governance | Schema Validation, Missing Value Checks, Duplicate Checks, OHLC Integrity, Reconciliation |
-| Visualisation | Matplotlib, Tableau |
+| Market Data | yfinance |
+| Trading Analytics | Returns, turnover, drawdown, Sharpe ratio, transaction costs, slippage |
+| Data Governance | Schema checks, missing value checks, duplicate checks, OHLC validation, reconciliation |
+| Trading Operations | Broker confirmation checks, settlement monitoring, exception reporting |
+| Visualisation | Tableau, Matplotlib |
 | Version Control | Git, GitHub |
 
 ---
 
-## Project Workflow
+## Notebook Structure
 
-```text
-Raw Market Data
-      ↓
-Data Cleaning & Feature Engineering
-      ↓
-Moving-Average Signal Generation
-      ↓
-Transaction Cost & Slippage Simulation
-      ↓
-After-Cost Trading Performance Analysis
-      ↓
-SQL-Based Performance Review
-      ↓
-Data Quality & Technical Risk Assessment
-      ↓
-Tableau Dashboard Reporting
-```
-
----
-
-## Data Governance & Risk Control Layer
-
-A dedicated notebook, `data_quality_risk_assessment.ipynb`, was created to make the project more realistic and auditable.
-
-It checks:
-
-- whether required columns exist across all datasets;
-- whether critical fields contain missing values;
-- whether duplicate Date-Asset records exist;
-- whether OHLC price fields follow market data integrity rules;
-- whether daily returns can be reconciled from close prices;
-- whether trading signals match the documented MA20/MA50 logic;
-- whether transaction cost, slippage, and after-cost PnL calculations are consistent;
-- whether assets show abnormal returns, high-cost trading days, or severe drawdown exposure.
-
-This turns the project from a simple backtest into a trading analytics, risk control, and data governance case study.
-
----
-
-## Key Outputs
-
-| Output | Description |
+| Notebook | What it does |
 |---|---|
-| `end_to_end_trading_analytics.ipynb` | Main trading analytics workflow |
-| `data_quality_risk_assessment.ipynb` | Data quality and technical risk assessment |
-| `trade_performance.csv` | Asset-level strategy performance data |
-| `dashboard_data.csv` | Final dataset used for dashboard reporting |
-| `data_quality_risk_scorecard.csv` | Asset-level data quality and risk scorecard |
-| Tableau Dashboard | Interactive performance and risk monitoring dashboard |
+| `01_end_to_end_trading_analytics.ipynb` | Collects market data, creates trading signals, simulates costs, evaluates strategy performance, runs SQL analysis, and prepares Tableau-ready outputs. |
+| `02_data_quality_risk_assessment.ipynb` | Checks whether the datasets and calculations are reliable, consistent, and auditable before using them for trading performance review. |
+| `03_trade_operations_reconciliation.ipynb` | Simulates a trade lifecycle control process by reconciling internal trades against broker confirmations and settlement records. |
 
 ---
 
-## Key Findings
+## Main Outputs
 
-- The strategy performance varies significantly across FX, commodity, and equity index markets.
-- Transaction costs and slippage reduce realised returns and can materially affect strategy profitability.
-- Drawdown analysis highlights that strong cumulative returns do not always mean lower risk.
-- Data quality checks identified OHLC integrity issues in some FX data, showing the importance of market data validation.
-- Return, signal, cost, and after-cost PnL reconciliation checks passed, supporting the reliability of the analytics pipeline.
-- The final scorecard separates data quality risk from trading performance risk, which is important for financial data and trading operations roles.
+| Output Area | Example Files |
+|---|---|
+| Trading analytics | `trade_performance.csv`, `performance_summary.csv`, `dashboard_data.csv` |
+| SQL reporting | `sql_performance_summary.csv`, `sql_cost_impact.csv`, `sql_annual_performance.csv` |
+| Data governance | `schema_validation.csv`, `missing_value_summary.csv`, `return_reconciliation_summary.csv`, `data_quality_risk_scorecard.csv` |
+| Trade operations | `internal_trades.csv`, `broker_confirmations.csv`, `settlement_records.csv`, `trade_exception_report.csv`, `trade_operations_scorecard.csv` |
 
----
-
-## Skills Demonstrated
-
-- Financial time-series analysis
-- Trading performance analytics
-- Transaction cost and slippage modelling
-- Risk-adjusted return evaluation
-- Data cleaning and feature engineering
-- SQL-based analytical reporting
-- Data governance and reconciliation controls
-- Dashboard design and stakeholder communication
+Detailed methodology, findings, and interpretation are documented in the full project report.
 
 ---
+
+## Why This Project Is Relevant
+
+This project is relevant to **trading operations, financial data analytics, risk operations, and data analyst** roles because it combines market data analysis with practical controls used in trading environments:
+
+- performance and cost analysis;
+- SQL-based reporting;
+- data quality validation;
+- calculation reconciliation;
+- broker confirmation and settlement exception monitoring;
+- dashboard-ready stakeholder reporting.
 

@@ -1,0 +1,10 @@
+file_name,location,purpose
+internal_trades.csv,../data/trade_operations,Internal trade blotter generated from strategy trade events.
+broker_confirmations.csv,../data/trade_operations,External broker confirmations with controlled simulated breaks.
+settlement_records.csv,../data/trade_operations,"Settlement records with simulated failed, pending, and delayed settlements."
+trade_exception_report.csv,../trade_operations_outputs,Detailed trade confirmation exception report.
+settlement_exception_report.csv,../trade_operations_outputs,Detailed settlement exception report.
+trade_reconciliation_summary.csv,../trade_operations_outputs,Aggregated trade exception summary by type and severity.
+settlement_exception_summary.csv,../trade_operations_outputs,Aggregated settlement exception summary by type and severity.
+asset_exception_summary.csv,../trade_operations_outputs,Asset-level exception summary for dashboard reporting.
+trade_operations_scorecard.csv,../trade_operations_outputs,High-level trade operations monitoring scorecard.
