@@ -4,9 +4,9 @@ A portfolio project that uses **Python, SQL, and Tableau** to analyse trading pe
 
 **Instruments covered:** EUR/USD, AUD/USD, Gold, NASDAQ 100, S&P 500  
 **Dashboard:** [View Tableau Dashboard](https://public.tableau.com/views/FX_CFD_Trading_Performance_Dashboard/FXCFDTradingPerformanceDashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)  
-**Full report:** [`docs/FX_CFD_Trading_Analytics_Report.md`](docs/FX_CFD_Trading_Analytics_Report.md)
+**For detailed methodology, results, and business interpretation, see the full project report:** [`docs/FX_CFD_Trading_Analytics_Report.md`](report/FX_CFD_Trading_Analytics_Report.md)
 
-For detailed methodology, results, and business interpretation, see the full project report: `report/FX_CFD_Trading_Analytics_Report.md`.
+
 ---
 
 ## Project Overview
