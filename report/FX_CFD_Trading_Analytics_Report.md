@@ -1,472 +1,366 @@
-# FX & CFD Trading Analytics, Risk Control & Data Governance Report
+# FX & CFD Trading Analytics Report
 
 ## 1. Executive Summary
 
-This project develops an end-to-end trading analytics workflow for five FX and CFD instruments: **AUD/USD, EUR/USD, Gold, NASDAQ 100, and S&P 500**. The workflow covers market data preparation, trading signal generation, transaction cost and slippage simulation, after-cost performance evaluation, SQL-based reporting, Tableau dashboard development, and data quality risk assessment.
+This project builds an end-to-end trading analytics workflow for five FX and CFD instruments: **AUD/USD, EUR/USD, Gold, NASDAQ 100, and S&P 500**. The project combines **Python**, **SQL/DuckDB**, **Tableau**, and **data governance checks** to analyse trading performance after realistic execution costs, validate the reliability of the underlying data, and simulate a lightweight trade operations reconciliation process.
 
-The purpose of this project is not only to test whether a simple moving-average strategy is profitable. More importantly, it demonstrates how trading performance should be analysed in a realistic business environment, where analysts need to consider execution cost, drawdown risk, data quality, calculation reliability, and how results should be communicated to stakeholders.
+The project is designed to answer four practical business questions:
 
-The key finding is that the same strategy behaves very differently across asset classes. **Gold** achieved the strongest after-cost performance, with an after-cost cumulative return of approximately **79.7%** and a Sharpe ratio of approximately **0.98**. **NASDAQ 100** also produced positive performance, with an after-cost cumulative return of approximately **31.5%**, but it carried higher execution cost and drawdown risk. **AUD/USD** performed the worst, with an after-cost cumulative return of approximately **-31.6%** and a negative Sharpe ratio of approximately **-1.08**.
+1. Which assets performed best after transaction costs and slippage?
+2. How much did execution costs reduce strategy performance?
+3. Can the market data, signal logic, return calculation, and after-cost PnL be trusted?
+4. What operational exceptions may occur when internal trade records are reconciled against broker confirmations and settlement records?
 
-From a business perspective, the result suggests that the moving-average strategy should not be applied uniformly across all instruments. Gold appears to be the most suitable asset for this trend-following logic, while AUD/USD should be reviewed carefully or excluded from the current strategy universe. The risk control layer also shows that transaction costs and slippage materially reduce performance, especially for higher-volatility assets such as NASDAQ 100 and Gold.
+The main result is that the same moving-average strategy produced very different outcomes across assets. **Gold performed best**, with an after-cost cumulative return of **79.7%** and a Sharpe ratio of **0.98**. **NASDAQ 100** also generated positive returns, with an after-cost cumulative return of **31.5%**, but it had the highest total execution cost and higher drawdown risk. **AUD/USD performed worst**, with an after-cost cumulative return of **-31.6%** and a Sharpe ratio of **-1.08**.
 
----
-
-## 2. Business Problem and Project Objective
-
-In trading and financial data roles, performance analysis cannot stop at asking:
-
-> Did the strategy make money?
-
-A more professional trading analytics workflow should answer:
-
-1. Which assets generated positive returns after transaction costs?
-2. Which assets delivered better risk-adjusted performance?
-3. How much did spread, slippage, and transaction costs reduce strategy returns?
-4. Which assets had unacceptable drawdown or execution risk?
-5. Can the data and calculations be reconciled and trusted?
-6. How should the results be communicated to trading, risk, and business stakeholders?
-
-This project was designed to answer these questions through a structured workflow combining **Python, SQL, Tableau, and data governance checks**.
-
-The final output is a portfolio-ready project that demonstrates capabilities in:
-
-- financial time-series analysis;
-- trading strategy evaluation;
-- transaction cost and slippage modelling;
-- risk-adjusted performance analysis;
-- SQL-based performance reporting;
-- data quality and reconciliation controls;
-- stakeholder-facing insight communication.
+From a business perspective, the strategy should not be applied uniformly across all assets. Gold showed the strongest fit for this trend-following logic, while AUD/USD should be reviewed, adjusted, or excluded from the strategy universe. The project also shows how trading analytics can be extended beyond performance measurement into **risk control, reconciliation, exception monitoring, and stakeholder reporting**.
 
 ---
 
-## 3. Assets and Data Scope
+## 2. Project Objective
 
-The project analyses five instruments across FX, commodities, and equity index CFDs.
+The purpose of this project is not only to test whether a simple strategy makes money. In a trading operations or financial data analytics environment, performance analysis also needs to consider execution cost, data quality, calculation reliability, and operational risk.
 
-| Asset | Asset Class | Analytical Purpose |
+This project therefore covers three connected layers:
+
+| Layer | Purpose | Main Output |
 |---|---|---|
-| AUD/USD | FX | Test strategy performance on a commodity-linked currency pair |
-| EUR/USD | FX | Test strategy performance on a major liquid currency pair |
-| Gold | Commodity CFD | Test trend-following behaviour on a safe-haven commodity |
-| NASDAQ 100 | Equity Index CFD | Test performance on a high-growth, high-volatility index |
-| S&P 500 | Equity Index CFD | Test performance on a broad US equity market index |
+| Trading performance analytics | Evaluate strategy return, cost, drawdown, and risk-adjusted performance | `performance_summary.csv`, dashboard data |
+| Data quality and risk control | Validate data integrity, signal logic, return calculation, and cost/PnL consistency | data governance scorecard and risk reports |
+| Trade operations reconciliation | Simulate trade lifecycle controls across internal trades, broker confirmations, and settlement records | exception reports and operations scorecard |
 
-The workflow uses OHLCV market data and produces processed trading datasets, performance tables, SQL exports, dashboard-ready files, and data quality risk outputs.
+This structure makes the project relevant to roles such as **Trading Operations Analyst**, **Financial Data Analyst**, **Risk Analyst**, and **Data Analyst in financial markets**.
+
+---
+
+## 3. Data Scope and Tools
+
+### 3.1 Asset Universe
+
+The project analyses five instruments across FX, commodity, and equity index exposure.
+
+| Asset | Asset Class | Reason for Inclusion |
+|---|---|---|
+| AUD/USD | FX | Currency pair with commodity-linked behaviour |
+| EUR/USD | FX | Highly liquid major currency pair |
+| Gold | Commodity CFD | Trend-sensitive safe-haven asset |
+| NASDAQ 100 | Equity Index CFD | High-growth, high-volatility index |
+| S&P 500 | Equity Index CFD | Broad US equity market benchmark |
+
+### 3.2 Tools Used
+
+| Tool | Usage |
+|---|---|
+| Python | Data cleaning, feature engineering, signal generation, cost simulation, performance metrics |
+| Pandas / NumPy | Time-series transformation, calculations, aggregation, reconciliation checks |
+| DuckDB / SQL | Performance summaries, cost analysis, volatility analysis, dashboard-ready exports |
+| Tableau | Stakeholder-facing dashboard and visual analytics |
+| Matplotlib | Supporting charts for report and validation |
+| Jupyter Notebook | Reproducible project workflow |
 
 ---
 
 ## 4. Analytical Workflow
 
-### 4.1 Data Preparation
+The project is organised into three notebooks.
 
-The first stage cleans and structures the raw market data into an analysis-ready time-series dataset.
+### 4.1 Notebook 01: End-to-End Trading Analytics
 
-The main preparation steps include:
+The first notebook creates the main trading analytics pipeline.
 
-- standardising date formats;
-- sorting observations by asset and date;
-- calculating daily returns and log returns;
-- creating rolling moving averages and volatility indicators;
-- removing rows without sufficient rolling-window history;
-- preparing asset-level time-series tables for backtesting and SQL analysis.
+**What was done:**
 
-This step is important because trading analytics depends heavily on clean and correctly ordered time-series data. If dates, asset identifiers, or return calculations are inconsistent, the final performance metrics can become misleading.
+1. Downloaded and structured OHLCV market data.
+2. Calculated daily returns, log returns, rolling volatility, 20-day moving average, and 50-day moving average.
+3. Generated trading signals using a moving-average crossover rule.
+4. Shifted signals by one day to avoid look-ahead bias.
+5. Simulated transaction costs and slippage.
+6. Calculated after-cost strategy returns, cumulative returns, equity curve, drawdown, Sharpe ratio, win rate, and exposure.
+7. Exported SQL-ready and Tableau-ready datasets.
 
-### 4.2 Trading Signal Design
+**Strategy rule:**
 
-The strategy uses a simple moving-average trend-following rule:
-
-```text
-If 20-day moving average > 50-day moving average:
-    signal = 1
-Otherwise:
-    signal = 0
-```
-
-The financial logic is that when the short-term moving average is above the medium-term moving average, the asset may be in an upward trend. The strategy therefore enters a long position during these periods.
-
-To avoid look-ahead bias, the model uses the previous day's signal as the current day's trading position. This ensures that the strategy does not use information that would not have been available at the time of trading.
-
-### 4.3 Transaction Cost and Slippage Modelling
-
-A major weakness of simple backtests is that they often report performance before costs. In real trading, execution frictions can significantly reduce returns.
-
-This project simulates three key cost components:
-
-| Cost Component | Meaning |
+| Condition | Signal |
 |---|---|
-| Spread cost | Cost of crossing the bid-ask spread |
-| Transaction cost | Cost incurred when the trading position changes |
-| Slippage cost | Additional execution cost related to volatility and trading conditions |
-| Total cost | Transaction cost plus slippage cost |
-| After-cost return | Strategy return after deducting total trading cost |
+| 20-day moving average > 50-day moving average | Buy / hold long position |
+| 20-day moving average <= 50-day moving average | Stay out / no long exposure |
 
-This makes the analysis closer to a realistic trading performance review because it separates theoretical strategy return from actual implementable return.
+A one-day signal shift was applied so that the strategy only uses information available before the trading day.
 
-### 4.4 SQL Reporting Layer
+### 4.2 Notebook 02: Data Quality and Risk Assessment
 
-DuckDB SQL was used to query and aggregate the processed trading data.
+The second notebook validates whether the data and calculations can be trusted before using the outputs for analysis.
 
-The SQL layer produces:
+**Controls implemented:**
 
-- asset-level performance summaries;
-- annual performance tables;
-- transaction cost impact analysis;
-- slippage and volatility summaries;
-- dashboard-ready datasets.
+- schema validation;
+- duplicate Date-Asset key check;
+- missing value check on critical columns;
+- OHLC integrity check;
+- return recalculation and reconciliation;
+- signal logic reconciliation;
+- transaction cost and after-cost PnL reconciliation;
+- technical risk event monitoring;
+- governance recommendation output.
 
-This step demonstrates that the project is not only a Python notebook, but a repeatable analytics pipeline that can support reporting, monitoring, and business review.
+This turns the project from a simple backtest into a more professional workflow with data governance and auditability.
 
-### 4.5 Dashboard Development
+### 4.3 Notebook 03: Trade Operations Reconciliation
 
-The Tableau dashboard was built to present the most important performance and risk metrics in one place.
+The third notebook simulates a lightweight trade operations workflow.
 
-The dashboard includes:
+**What was done:**
 
-- cumulative return after cost by asset;
-- drawdown after cost by asset;
-- Sharpe ratio after cost by asset;
-- total execution cost by asset;
-- average slippage versus 20-day volatility.
+1. Created simulated internal trade records from strategy-generated trade events.
+2. Created broker confirmation records with controlled exceptions.
+3. Created settlement records with simulated failed, pending, missing, and delayed settlements.
+4. Reconciled internal trades against broker confirmations.
+5. Reconciled confirmed trades against settlement records.
+6. Generated detailed exception reports, asset-level exception summaries, and a trade operations scorecard.
 
-The dashboard is used as the stakeholder-facing layer of the project. It supports fast comparison across assets and helps identify which instruments performed well, which carried high risk, and where transaction costs had the strongest impact.
+This module demonstrates trade lifecycle awareness and exception monitoring, which are directly relevant to trading operations roles.
 
 ---
 
-## 5. Performance Results
+## 5. Trading Performance Results
 
-### 5.1 Cumulative Return After Cost
+### 5.1 After-Cost Performance Summary
 
-| Asset | Cumulative Return Before Cost | Cumulative Return After Cost | Cost Impact |
-|---|---:|---:|---:|
-| AUD/USD | -29.9% | -31.6% | 1.6% |
-| EUR/USD | 6.1% | 4.5% | 1.5% |
-| Gold | 84.7% | 79.7% | 5.0% |
-| NASDAQ 100 | 37.2% | 31.5% | 5.7% |
-| S&P 500 | 15.4% | 11.9% | 3.5% |
+| Asset | Cumulative Return After Cost | Annualised Return After Cost | Sharpe Ratio After Cost | Max Drawdown After Cost | Total Trades |
+|---|---:|---:|---:|---:|---:|
+| Gold | 79.7% | 13.0% | 0.98 | -14.6% | 25 |
+| NASDAQ 100 | 31.5% | 5.9% | 0.46 | -28.1% | 25 |
+| S&P 500 | 11.9% | 2.4% | 0.26 | -31.2% | 23 |
+| EUR/USD | 4.5% | 0.9% | 0.20 | -8.7% | 31 |
+| AUD/USD | -31.6% | -7.4% | -1.08 | -33.2% | 35 |
 
-Gold was the strongest performer, delivering an after-cost cumulative return of approximately **79.7%**. This indicates that the moving-average strategy captured Gold's trend behaviour more effectively than the other assets in the sample.
+### 5.2 Key Findings
 
-NASDAQ 100 also generated a strong positive return of approximately **31.5%** after costs. However, its performance came with higher execution cost and drawdown risk, so the return should not be interpreted without considering risk.
+**Gold was the strongest asset in the strategy universe.**  
+Gold achieved the highest after-cost cumulative return at **79.7%** and the highest Sharpe ratio at **0.98**. It also had a moderate maximum drawdown of **-14.6%**, making it the strongest risk-adjusted performer in this project.
 
-S&P 500 produced a smaller but still positive after-cost return of approximately **11.9%**.
+**NASDAQ 100 generated strong positive returns but carried higher risk.**  
+NASDAQ 100 returned **31.5%** after costs, but its maximum drawdown reached **-28.1%**. It also had the highest total execution cost among all assets, suggesting that the strategy may be profitable but needs tighter risk and cost monitoring.
 
-EUR/USD was only slightly positive after costs, suggesting that the strategy had limited effectiveness for this currency pair.
+**AUD/USD was unsuitable for this strategy setup.**  
+AUD/USD produced an after-cost cumulative return of **-31.6%** and a Sharpe ratio of **-1.08**. Although it had the highest number of trades (**35**), its performance remained negative after costs, indicating that the moving-average rule did not capture useful trend behaviour for this asset.
 
-AUD/USD produced a negative after-cost cumulative return of approximately **-31.6%**, showing that the strategy was not suitable for this instrument during the tested period.
-
-### 5.2 Risk-Adjusted Performance
-
-| Asset | Sharpe Ratio After Cost | Interpretation |
-|---|---:|---|
-| Gold | 0.98 | Strongest risk-adjusted result |
-| NASDAQ 100 | 0.46 | Positive but moderate |
-| S&P 500 | 0.26 | Weak positive risk-adjusted return |
-| EUR/USD | 0.20 | Low but positive |
-| AUD/USD | -1.08 | Poor risk-adjusted performance |
-
-Gold had the highest Sharpe ratio, close to **1.0**, which means it generated the best return per unit of volatility among the tested assets.
-
-NASDAQ 100 had a positive Sharpe ratio, but it was much lower than Gold. This means that although NASDAQ 100 generated positive return, the return was less attractive after adjusting for volatility.
-
-AUD/USD had a negative Sharpe ratio, meaning the strategy produced negative returns relative to its risk exposure.
-
-### 5.3 Drawdown Risk
-
-| Asset | Maximum Drawdown After Cost | Risk Interpretation |
-|---|---:|---|
-| AUD/USD | -33.2% | High drawdown risk |
-| S&P 500 | -31.2% | High drawdown risk |
-| NASDAQ 100 | -28.1% | Medium-to-high drawdown risk |
-| Gold | -14.6% | Moderate drawdown risk |
-| EUR/USD | -8.7% | Lower drawdown risk |
-
-Drawdown analysis shows that return alone is not enough to evaluate strategy quality.
-
-AUD/USD had both negative final return and deep drawdown, making it the weakest asset in this project.
-
-S&P 500 had positive final return, but its drawdown exceeded **30%**, which means stakeholders should not treat it as a low-risk strategy.
-
-Gold had the best balance between return and drawdown. Its drawdown was meaningfully lower than AUD/USD, NASDAQ 100, and S&P 500, while its final return was the highest.
-
-### 5.4 Execution Cost Analysis
-
-| Asset | Total Transaction Cost | Total Slippage Cost | Total Cost |
-|---|---:|---:|---:|
-| NASDAQ 100 | 0.0075 | 0.0349 | 0.0424 |
-| S&P 500 | 0.0058 | 0.0247 | 0.0304 |
-| Gold | 0.0050 | 0.0222 | 0.0272 |
-| AUD/USD | 0.0025 | 0.0211 | 0.0235 |
-| EUR/USD | 0.0016 | 0.0130 | 0.0146 |
-
-NASDAQ 100 had the highest total execution cost, mainly driven by slippage. This is consistent with the fact that higher-volatility assets tend to have higher execution risk.
-
-EUR/USD had the lowest total cost, but its after-cost return was still weak. This shows that low cost does not automatically lead to strong strategy performance. A good trading strategy needs both effective signal generation and manageable execution cost.
-
-Gold had meaningful execution cost, but its return was high enough to absorb those costs. This makes Gold the strongest asset from a cost-adjusted perspective.
+**S&P 500 and EUR/USD were positive but weak.**  
+S&P 500 and EUR/USD produced positive after-cost returns, but their Sharpe ratios were relatively low. These assets may require additional filters, different moving-average windows, or volatility-based position sizing before being considered for deployment.
 
 ---
 
-## 6. Data Quality and Technical Risk Assessment
+## 6. Execution Cost and Slippage Analysis
 
-To upgrade the project from a simple backtest to a more professional analytics workflow, a dedicated data quality and technical risk assessment notebook was added.
+The strategy includes both fixed transaction costs and volatility-linked slippage costs. This makes the analysis more realistic than a simple return-only backtest.
 
-The goal of this layer is to answer:
+| Asset | Transaction Cost | Slippage Cost | Total Cost | Cost Impact |
+|---|---:|---:|---:|---:|
+| NASDAQ 100 | 0.0075 | 0.0349 | 0.0424 | 5.69% |
+| S&P 500 | 0.0058 | 0.0247 | 0.0304 | 3.46% |
+| Gold | 0.0050 | 0.0222 | 0.0272 | 4.97% |
+| AUD/USD | 0.0025 | 0.0211 | 0.0235 | 1.63% |
+| EUR/USD | 0.0016 | 0.0130 | 0.0146 | 1.53% |
 
-> Can stakeholders trust the data, signals, and PnL calculations behind the trading results?
+### Business Interpretation
 
-### 6.1 Governance Controls Applied
+Execution cost materially changed the strategy results. NASDAQ 100 had the highest total cost and the largest cost impact, which means execution quality would be important if this strategy were used in a real trading environment. Gold still performed strongly after cost, which suggests that its trend-following signal was strong enough to absorb the simulated cost drag.
 
-| Control | Purpose |
+For trading operations and risk teams, this type of analysis helps identify where execution cost, spread, and slippage may reduce strategy profitability and where desk-level monitoring should be prioritised.
+
+---
+
+## 7. Data Quality and Risk Control Results
+
+The data quality assessment checked whether the datasets and calculations were reliable enough for reporting.
+
+### 7.1 Dataset Inventory
+
+| Dataset | Rows | Columns | Date Range | Assets | Duplicate Rows |
+|---|---:|---:|---|---:|---:|
+| Raw market data | 6,362 | 8 | 2021-01-01 to 2025-12-30 | 5 | 0 |
+| Processed market data | 6,117 | 13 | 2021-03-11 to 2025-12-30 | 5 | 0 |
+| Trading signals | 6,117 | 16 | 2021-03-11 to 2025-12-30 | 5 | 0 |
+| Trade performance | 6,117 | 27 | 2021-03-11 to 2025-12-30 | 5 | 0 |
+
+### 7.2 Control Results
+
+| Control Area | Result |
 |---|---|
-| Dataset inventory | Documents available datasets, columns, rows, date range, and asset coverage |
-| Schema validation | Checks whether required fields exist |
-| Missing value check | Detects missing values in critical fields |
-| Duplicate key check | Ensures each Date-Asset record is unique |
-| OHLC integrity check | Flags invalid price relationships such as High below Close |
-| Date gap check | Detects suspicious time-series gaps |
-| Return reconciliation | Recalculates returns from Close price |
-| Signal reconciliation | Checks whether signals follow the MA20 > MA50 rule |
-| Cost/PnL reconciliation | Validates total cost and after-cost return calculations |
-| Technical risk detection | Flags extreme returns, high-cost days, and drawdown exposure |
-| Risk scorecard | Converts data and risk issues into asset-level ratings |
+| Schema validation | 0 datasets failed required-column checks |
+| Duplicate control | 0 duplicate Date-Asset records detected |
+| Return reconciliation | 0 return calculation mismatches detected |
+| Signal governance | 0 signal logic mismatches detected |
+| Cost and PnL control | 0 cost/PnL reconciliation failures detected |
+| Market data integrity | 76 OHLC price integrity issues detected |
+| Technical risk monitoring | 70 technical risk events flagged for review |
 
-### 6.2 Core Validation Results
+### Business Interpretation
 
-| Control | Result |
+The reconciliation checks confirmed that return calculations, signal logic, transaction cost calculations, and after-cost PnL logic were internally consistent. This improves confidence that the performance results are not caused by calculation errors.
+
+The main issue identified was market data integrity. The OHLC check detected **76 price integrity issues**, mainly in the FX datasets. These records should be flagged before production reporting or live trading analysis. The project therefore shows how data quality controls can reduce reporting risk and improve confidence in trading analytics outputs.
+
+---
+
+## 8. Trade Operations Reconciliation Results
+
+The trade operations module simulated a small trade lifecycle control process using:
+
+- **120 internal trades**;
+- **115 broker confirmations**;
+- **115 settlement records**.
+
+### 8.1 Trade Confirmation Exceptions
+
+| Exception Type | Severity | Count |
+|---|---|---:|
+| PnL Variance | Medium | 6 |
+| Quantity Mismatch | High | 6 |
+| Missing Broker Confirmation | High | 5 |
+| Price Discrepancy | Medium | 5 |
+
+The internal trade records achieved **95.83% broker confirmation coverage**, with **5 missing broker confirmations**.
+
+### 8.2 Settlement Exceptions
+
+| Exception Type | Severity | Count |
+|---|---|---:|
+| Settlement Not Completed | High | 44 |
+| Missing Settlement Record | High | 5 |
+| Settlement Delay | Medium | 5 |
+
+The settlement completion rate was **61.74%**, and the settlement exception rate was **45.00%** in the simulated dataset.
+
+### 8.3 Operations Scorecard
+
+| Metric | Value |
 |---|---:|
-| Schema validation failures | 0 |
-| Duplicate Date-Asset records | 0 |
-| Missing critical values | 0 |
-| Return reconciliation failures | 0 |
-| Signal logic mismatches | 0 |
-| Cost/PnL reconciliation failures | 0 |
-| Suspicious date gaps | 0 |
+| Total Internal Trades | 120 |
+| Total Broker Confirmations | 115 |
+| Total Settlement Records | 115 |
+| Trade Exception Count | 22 |
+| Settlement Exception Count | 54 |
+| Broker Confirmation Coverage | 95.83% |
+| Settlement Completion Rate | 61.74% |
+| Trade Exception Rate | 18.33% |
+| Settlement Exception Rate | 45.00% |
 
-These results show that the main calculation pipeline is internally consistent. The returns, signals, transaction costs, slippage costs, and after-cost PnL can be reconciled and explained.
+### Business Interpretation
 
-This is important from a stakeholder perspective because trading results should not be presented unless the calculation process is traceable and auditable.
+This module demonstrates how trading operations teams can monitor the full trade lifecycle after strategy execution. The exception reports identify missing confirmations, quantity mismatches, price discrepancies, PnL variance, failed settlements, pending settlements, and settlement delays.
 
-### 6.3 OHLC Price Integrity Issues
+In a real trading environment, this type of exception monitoring helps teams:
 
-The OHLC integrity check identified **76 market data issues**.
+- detect trade breaks earlier;
+- reduce operational risk;
+- improve broker and settlement follow-up;
+- support auditability;
+- provide structured exception reports to traders, operations teams, and risk stakeholders.
 
-| Asset | OHLC Issues | Interpretation |
-|---|---:|---|
-| AUD/USD | 46 | Requires market data review |
-| EUR/USD | 30 | Requires market data review |
-| Gold | 0 | No OHLC issues detected |
-| NASDAQ 100 | 0 | No OHLC issues detected |
-| S&P 500 | 0 | No OHLC issues detected |
-
-The issues were mainly found in AUD/USD and EUR/USD. These records may indicate inconsistent High, Low, Open, or Close prices.
-
-The correct business interpretation is not to immediately delete these records. Instead, they should be flagged for review and compared with another data source if the strategy were used in a production environment.
-
-### 6.4 Technical Risk Events
-
-The technical risk monitoring layer flagged **70 technical risk events** for review.
-
-| Asset | Extreme Return Days | High-Cost Days | Worst Drawdown |
-|---|---:|---:|---:|
-| AUD/USD | 12 | 2 | -33.2% |
-| EUR/USD | 13 | 2 | -8.7% |
-| Gold | 12 | 2 | -14.6% |
-| NASDAQ 100 | 10 | 2 | -28.1% |
-| S&P 500 | 13 | 2 | -31.2% |
-
-Extreme return days are not necessarily data errors. They may represent real market movements. However, they should be reviewed because they can materially affect return, volatility, Sharpe ratio, and drawdown calculations.
-
-High-cost days are also important because they indicate periods where execution cost became unusually large compared with the asset's normal cost level.
-
-### 6.5 Asset-Level Risk Scorecard
-
-| Asset | Data Quality Risk Score | Data Quality Risk Level | Performance Risk Level | Interpretation |
-|---|---:|---|---|---|
-| AUD/USD | 258 | Medium | High | Data quality issues and poor strategy performance |
-| EUR/USD | 180 | Medium | Low | Data quality issues but lower performance risk |
-| S&P 500 | 30 | Low | High | Clean data but high drawdown exposure |
-| Gold | 28 | Low | Low | Strongest overall profile |
-| NASDAQ 100 | 24 | Low | Medium | Positive return with meaningful drawdown risk |
-
-The risk scorecard separates **data quality risk** from **performance risk**.
-
-This distinction is important. For example, S&P 500 had low data quality risk but high performance risk because of its deep drawdown. AUD/USD had both data quality issues and weak performance, so it requires the most careful review.
+The exceptions in this module are intentionally simulated to demonstrate the control logic and reporting workflow.
 
 ---
 
-## 7. Stakeholder Communication
+## 9. Dashboard and Stakeholder Reporting
 
-This section explains how I would communicate the project findings to different stakeholders.
+The Tableau dashboard was designed to communicate the trading performance results in a business-facing format.
 
-### 7.1 Communication to a Trading Team
+### Dashboard Components
 
-For a trading team, I would focus on strategy performance, risk-adjusted return, drawdown, and whether the signal is worth further development.
+| Dashboard View | Purpose |
+|---|---|
+| Cumulative Return After Cost by Asset | Compare long-term strategy performance across assets |
+| Drawdown After Cost by Asset | Identify downside risk and recovery patterns |
+| Sharpe Ratio After Cost by Asset | Compare risk-adjusted performance |
+| Total Execution Cost by Asset | Identify assets with higher cost drag |
+| Average Slippage vs 20-Day Volatility | Show the relationship between volatility and execution cost |
 
-Suggested wording:
+### Example Dashboard
 
-> The moving-average strategy performed best on Gold, with the highest after-cost return and the strongest Sharpe ratio. NASDAQ 100 also generated positive returns, but its higher execution cost and larger drawdown suggest that risk controls would need to be improved before scaling the strategy. AUD/USD underperformed materially, so I would not recommend using the current signal on AUD/USD without further signal redesign or additional filters.
+![FX & CFD Trading Performance Dashboard](../dashboard/FX_CFD_Trading_Performance_Dashboard.png)
 
-Key trading message:
+### Business Value
 
-- Gold is the strongest candidate for further strategy testing.
-- NASDAQ 100 has return potential but needs tighter risk control.
-- AUD/USD should be excluded or redesigned under the current strategy logic.
+The dashboard allows stakeholders to quickly identify:
 
-### 7.2 Communication to a Risk Manager
+- which assets performed best after cost;
+- which assets had unacceptable drawdowns;
+- where execution cost was highest;
+- which assets may need further review before being used in a trading strategy.
 
-For a risk manager, I would focus less on return and more on drawdown, volatility, execution cost, and technical risk events.
-
-Suggested wording:
-
-> The strategy shows meaningful drawdown risk in AUD/USD, S&P 500, and NASDAQ 100. Although S&P 500 and NASDAQ 100 generated positive final returns, their drawdowns indicate that the strategy may expose the portfolio to large interim losses. I would recommend adding volatility-based position sizing, drawdown limits, and stress testing before considering production use.
-
-Key risk message:
-
-- Positive return does not mean acceptable risk.
-- Drawdown limits should be added.
-- High-volatility assets need execution cost and slippage monitoring.
-- Technical risk events should be reviewed before relying on the backtest.
-
-### 7.3 Communication to a Data Governance or Operations Team
-
-For a data governance or operations team, I would focus on data reliability, reconciliation, and auditability.
-
-Suggested wording:
-
-> The main calculation pipeline passed schema validation, missing value checks, duplicate key checks, return reconciliation, signal reconciliation, and cost/PnL reconciliation. However, the OHLC integrity check identified 76 market data issues, mainly in AUD/USD and EUR/USD. These records should be flagged and reviewed against an alternative data vendor before the results are used for formal reporting.
-
-Key governance message:
-
-- The calculation pipeline is internally consistent.
-- AUD/USD and EUR/USD have OHLC data quality issues.
-- Data issues should be flagged, documented, and reconciled.
-- The project includes an auditable control layer rather than relying only on backtest outputs.
-
-### 7.4 Communication to a Business Stakeholder
-
-For a non-technical stakeholder, I would avoid technical details and focus on business meaning.
-
-Suggested wording:
-
-> The analysis shows that the strategy is not equally effective across all assets. Gold delivered the strongest performance after trading costs, while AUD/USD performed poorly. The analysis also shows that trading costs and drawdowns can materially change how attractive a strategy looks. Before using this type of strategy in practice, we should focus on the assets where the signal is stronger, apply risk limits, and review the data quality issues found in the FX datasets.
-
-Key business message:
-
-- Do not apply the same trading rule blindly to every asset.
-- Gold is the best-performing asset in this analysis.
-- AUD/USD is not suitable under the current rule.
-- Cost, drawdown, and data quality must be considered before decision-making.
+This turns the notebook outputs into a format suitable for trading, risk, operations, or business stakeholders.
 
 ---
 
-## 8. Business Recommendations
+## 10. Overall Business Recommendations
 
-Based on the analysis, I would make the following recommendations.
+Based on the analysis, the main recommendations are:
 
-### Recommendation 1: Prioritise Gold for further testing
+1. **Prioritise Gold for further strategy testing.**  
+   Gold produced the strongest after-cost return and Sharpe ratio, making it the best candidate for further parameter testing and robustness checks.
 
-Gold showed the strongest after-cost return and Sharpe ratio. It should be the first asset selected for deeper testing, including walk-forward validation and alternative parameter testing.
+2. **Review NASDAQ 100 execution cost and drawdown risk.**  
+   NASDAQ 100 generated positive returns, but its execution cost and drawdown were high. It may require volatility filters, position sizing rules, or stop-loss controls.
 
-### Recommendation 2: Do not use the current strategy on AUD/USD without redesign
+3. **Avoid applying the strategy uniformly across all assets.**  
+   The strategy performed poorly on AUD/USD and only weakly on EUR/USD and S&P 500. Each asset should be evaluated separately rather than applying the same rule across the full universe.
 
-AUD/USD had negative after-cost return, negative Sharpe ratio, deep drawdown, and OHLC data quality issues. The current moving-average strategy is not suitable for AUD/USD without further investigation.
+4. **Maintain data governance before performance reporting.**  
+   Schema checks, missing value checks, OHLC validation, return reconciliation, and signal reconciliation should be run before relying on the results.
 
-### Recommendation 3: Add risk controls for NASDAQ 100 and S&P 500
-
-NASDAQ 100 and S&P 500 showed positive returns, but both had meaningful drawdown risk. Risk controls such as volatility targeting, stop-loss rules, or maximum drawdown limits should be tested.
-
-### Recommendation 4: Review FX market data quality before formal reporting
-
-AUD/USD and EUR/USD had OHLC integrity issues. These records should be compared against another market data provider before using the results in a formal trading or risk report.
-
-### Recommendation 5: Improve execution cost modelling
-
-The current cost model captures spread, transaction cost, and volatility-driven slippage, but real execution costs may vary by broker, liquidity, market session, and order size. Future work should include more granular cost assumptions.
+5. **Use exception monitoring for trade lifecycle control.**  
+   Internal trade records should be reconciled against broker confirmations and settlement records to detect operational issues before they create financial or reporting risk.
 
 ---
 
-## 9. Limitations
+## 11. Limitations and Next Steps
 
-This project has several limitations.
+This project is designed as a portfolio analytics project rather than a production trading system.
 
-1. **Simple strategy logic**  
-   The strategy only uses a 20-day and 50-day moving-average rule. It does not include additional filters such as momentum, volatility regime, macro indicators, or machine learning signals.
+### Limitations
 
-2. **Long-only position design**  
-   The strategy only enters long positions or stays out of the market. It does not test short-selling during downtrends.
+- The strategy uses a simple moving-average crossover rule.
+- The project does not include short-selling logic.
+- Transaction cost and slippage assumptions are simulated.
+- Trade operations exceptions are simulated for demonstration purposes.
+- The analysis does not include live order book data, broker execution records, or real settlement data.
+- The results should not be interpreted as investment advice.
 
-3. **Simplified execution cost assumptions**  
-   Transaction cost and slippage are simulated. In real trading, execution cost depends on liquidity, broker pricing, order size, latency, and market conditions.
+### Next Steps
 
-4. **No dynamic position sizing**  
-   The project does not adjust position size based on volatility, risk budget, or drawdown.
+Future improvements could include:
 
-5. **No walk-forward validation**  
-   The moving-average parameters are fixed. Future work should test whether the parameters remain robust across different market regimes.
-
-6. **Data quality issues require external validation**  
-   The OHLC issues are flagged by rule-based checks, but external data comparison would be needed before deciding whether to correct or remove the affected records.
-
----
-
-## 10. Skills Demonstrated
-
-This project demonstrates the following skills.
-
-### Financial Analytics
-
-- Return calculation
-- Volatility analysis
-- Sharpe ratio calculation
-- Drawdown analysis
-- After-cost performance evaluation
-- Trading cost interpretation
-
-### Quantitative and Trading Analysis
-
-- Moving-average signal design
-- Backtesting logic
-- Look-ahead bias prevention
-- Transaction cost simulation
-- Slippage modelling
-- Asset-level performance comparison
-
-### Data Analysis and Engineering
-
-- Python data cleaning with Pandas and NumPy
-- Time-series feature engineering
-- SQL aggregation with DuckDB
-- Dashboard-ready dataset preparation
-- Reproducible notebook workflow
-
-### Risk Control and Data Governance
-
-- Schema validation
-- Missing value checks
-- Duplicate key checks
-- OHLC price integrity validation
-- Return reconciliation
-- Signal logic reconciliation
-- Cost and PnL reconciliation
-- Technical risk event detection
-- Asset-level risk scorecard design
-
-### Stakeholder Communication
-
-- Translating technical metrics into business insights
-- Explaining risk-adjusted performance
-- Communicating data quality issues
-- Making actionable recommendations for trading, risk, and business teams
+- testing different moving-average windows;
+- adding volatility filters or regime detection;
+- adding position sizing and risk limits;
+- comparing the strategy against buy-and-hold benchmarks;
+- using walk-forward validation;
+- connecting the exception monitoring workflow to a dashboard;
+- adding automated alerting for high-severity trade exceptions.
 
 ---
 
-## 11. Final Conclusion
+## 12. Skills Demonstrated
 
-This project shows how a simple trading strategy can be analysed in a professional way. Instead of only reporting backtest returns, the workflow evaluates performance after transaction costs, compares risk-adjusted returns, analyses drawdown, monitors execution cost, validates data quality, reconciles calculations, and translates the results into stakeholder-facing recommendations.
+This project demonstrates the following skills:
 
-The strongest result came from Gold, which delivered the highest after-cost return and the best Sharpe ratio. NASDAQ 100 also showed positive performance but required stronger risk control because of higher cost and drawdown. AUD/USD performed poorly and also had data quality issues, making it unsuitable under the current strategy design.
+| Skill Area | Evidence in Project |
+|---|---|
+| Financial data analysis | Multi-asset return, volatility, drawdown, Sharpe ratio, and cost analysis |
+| Python analytics | Data cleaning, feature engineering, signal generation, backtesting, reconciliation |
+| SQL analytics | DuckDB queries for performance, cost, volatility, and dashboard exports |
+| Trading operations | Broker confirmation reconciliation, settlement exception monitoring, operations scorecard |
+| Data governance | Schema validation, missing value control, duplicate checks, calculation reconciliation |
+| Dashboarding | Tableau dashboard for stakeholder-facing performance reporting |
+| Business communication | Clear recommendations based on quantified trading, cost, risk, and operations results |
 
-The main value of this project is that it combines **trading analytics, risk control, data governance, SQL reporting, Tableau visualisation, and business communication**. This makes it stronger than a standard backtesting project and more relevant to real-world financial data, trading operations, risk analytics, and quantitative analyst roles.
+---
+
+## 13. Final Conclusion
+
+This project shows how a trading analytics workflow can be extended beyond basic strategy testing. The analysis evaluates after-cost performance, identifies execution cost impact, validates data quality, reconciles key calculations, and simulates trade operations exception monitoring.
+
+The strongest business insight is that **Gold was the best-performing asset under the current strategy**, while **AUD/USD was not suitable for the same moving-average logic**. The project also demonstrates that trading analytics should be supported by governance and reconciliation controls, because profitable-looking results are only useful when the underlying data, calculations, and trade lifecycle records can be trusted.
+
+Overall, the project presents a complete workflow across **trading performance analysis, risk control, data governance, SQL reporting, Tableau visualisation, and trade operations reconciliation**.
