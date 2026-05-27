@@ -6,8 +6,7 @@ A portfolio project that uses **Python, SQL, and Tableau** to analyse trading pe
 **Dashboard:** [View Tableau Dashboard](https://public.tableau.com/views/FX_CFD_Trading_Performance_Dashboard/FXCFDTradingPerformanceDashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)  
 **Full report:** [`docs/FX_CFD_Trading_Analytics_Report.md`](docs/FX_CFD_Trading_Analytics_Report.md)
 
-> This project is for portfolio and educational purposes only. It is not financial advice.
-
+For detailed methodology, results, and business interpretation, see the full project report: `report/FX_CFD_Trading_Analytics_Report.md`.
 ---
 
 ## Project Overview
@@ -75,4 +74,4 @@ This project is relevant to **trading operations, financial data analytics, risk
 - calculation reconciliation;
 - broker confirmation and settlement exception monitoring;
 - dashboard-ready stakeholder reporting.
-
+> This project is for portfolio and educational purposes only. It is not financial advice.
