@@ -252,26 +252,6 @@ FX_CFD_Trading_Analytics/
 
 ---
 
-## How to Run
-
-1. Clone this repository.
-2. Install the required packages:
-
-```bash
-pip install -r requirements.txt
-```
-
-3. Run the notebooks in order:
-
-```text
-01_end_to_end_trading_analytics.ipynb
-02_data_quality_risk_assessment.ipynb
-03_trade_operations_reconciliation.ipynb
-```
-
-4. Open the Tableau workbook files in `dashboard/tableau/` or view the published Tableau dashboards using the links above.
-
----
 
 ## Why This Project Is Relevant
 
