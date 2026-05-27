@@ -265,8 +265,7 @@ Two Tableau dashboards were created to communicate the results in a business-fac
 
 **Interactive Dashboard:** [View on Tableau Public](https://public.tableau.com/views/Dashboard1FXCFDTradingPerformanceDashboard/FXCFDTradingPerformanceDashboard?:language=zh-CN&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
-![FX & CFD Trading Performance Dashboard](dashboard/tableau/FX_CFD_Trading_Performance_Dashboard.png)
-
+![FX & CFD Trading Performance Dashboard](../dashboard/tableau/FX_CFD_Trading_Performance_Dashboard.png)
 
 This dashboard focuses on strategy performance after transaction costs. It includes:
 
@@ -290,8 +289,7 @@ This dashboard helps stakeholders compare asset-level strategy performance, iden
 
 **Interactive Dashboard:** [View on Tableau Public](https://public.tableau.com/views/Dashboard2TradeOperationsReconciliationExceptionMonitoring_17799001041320/TradeOperationsMonitoring?:language=zh-CN&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
-![Trade Operations Reconciliation & Exception Monitoring](dashboard/tableau/Trade_Operations_Monitoring.png)
-
+![Trade Operations Reconciliation & Exception Monitoring](../dashboard/tableau/Trade_Operations_Monitoring.png)
 This dashboard focuses on post-trade operations monitoring. It includes:
 
 - broker confirmation coverage;
