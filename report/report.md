@@ -263,7 +263,7 @@ Two Tableau dashboards were created to communicate the results in a business-fac
 
 ### 8.1 Dashboard 1: FX & CFD Trading Performance Dashboard
 
-**Interactive Dashboard:** [FX & CFD Trading Performance Dashboard](https://public.tableau.com/views/Dashboard1FXCFDTradingPerformanceDashboard/FXCFDTradingPerformanceDashboard?:language=zh-CN&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
+**Interactive Dashboard:** [View on Tableau Public](https://public.tableau.com/views/Dashboard1FXCFDTradingPerformanceDashboard/FXCFDTradingPerformanceDashboard?:language=zh-CN&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
 ![FX & CFD Trading Performance Dashboard](dashboard/tableau/FX_CFD_Trading_Performance_Dashboard.png)
 
