@@ -1,0 +1,4 @@
+exception_type,severity,exception_count
+Settlement Not Completed,High,44
+Missing Settlement Record,High,5
+Settlement Delay,Medium,5

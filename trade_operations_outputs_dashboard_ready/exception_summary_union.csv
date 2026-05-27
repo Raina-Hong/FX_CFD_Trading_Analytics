@@ -1,0 +1,8 @@
+exception_type,severity,exception_count,Exception Stage
+PnL Variance,Medium,6,Trade Confirmation
+Quantity Mismatch,High,6,Trade Confirmation
+Missing Broker Confirmation,High,5,Trade Confirmation
+Price Discrepancy,Medium,5,Trade Confirmation
+Settlement Not Completed,High,44,Settlement
+Missing Settlement Record,High,5,Settlement
+Settlement Delay,Medium,5,Settlement

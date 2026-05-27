@@ -1,0 +1,23 @@
+trade_id,asset,exception_type,severity,description
+T00003,AUDUSD,Quantity Mismatch,High,Internal quantity 10200 differs from confirmed quantity 10300.0.
+T00003,AUDUSD,PnL Variance,Medium,Expected PnL and reported PnL differ by 248.96.
+T00006,EURUSD,Price Discrepancy,Medium,"Execution price and confirmed price differ by 1.01%, exceeding tolerance."
+T00007,AUDUSD,Price Discrepancy,Medium,"Execution price and confirmed price differ by 1.01%, exceeding tolerance."
+T00014,EURUSD,PnL Variance,Medium,Expected PnL and reported PnL differ by 247.20.
+T00017,AUDUSD,PnL Variance,Medium,Expected PnL and reported PnL differ by 249.90.
+T00020,NASDAQ100,PnL Variance,Medium,Expected PnL and reported PnL differ by 247.04.
+T00025,AUDUSD,Quantity Mismatch,High,Internal quantity 19700 differs from confirmed quantity 19800.0.
+T00026,GOLD,PnL Variance,Medium,Expected PnL and reported PnL differ by 254.07.
+T00042,NASDAQ100,Quantity Mismatch,High,Internal quantity 6400 differs from confirmed quantity 6500.0.
+T00042,NASDAQ100,PnL Variance,Medium,Expected PnL and reported PnL differ by 253.14.
+T00055,EURUSD,Missing Broker Confirmation,High,Internal trade record has no matching broker confirmation.
+T00056,SP500,Quantity Mismatch,High,Internal quantity 9900 differs from confirmed quantity 10000.0.
+T00060,NASDAQ100,Missing Broker Confirmation,High,Internal trade record has no matching broker confirmation.
+T00075,AUDUSD,Quantity Mismatch,High,Internal quantity 11500 differs from confirmed quantity 11600.0.
+T00078,AUDUSD,Missing Broker Confirmation,High,Internal trade record has no matching broker confirmation.
+T00096,NASDAQ100,Missing Broker Confirmation,High,Internal trade record has no matching broker confirmation.
+T00102,GOLD,Price Discrepancy,Medium,"Execution price and confirmed price differ by 1.00%, exceeding tolerance."
+T00104,GOLD,Price Discrepancy,Medium,"Execution price and confirmed price differ by 0.97%, exceeding tolerance."
+T00107,NASDAQ100,Quantity Mismatch,High,Internal quantity 14800 differs from confirmed quantity 14900.0.
+T00112,EURUSD,Price Discrepancy,Medium,"Execution price and confirmed price differ by 0.99%, exceeding tolerance."
+T00118,AUDUSD,Missing Broker Confirmation,High,Internal trade record has no matching broker confirmation.

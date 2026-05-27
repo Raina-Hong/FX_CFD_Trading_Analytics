@@ -1,0 +1,10 @@
+metric,value
+Total Internal Trades,120.0
+Total Broker Confirmations,115.0
+Total Settlement Records,115.0
+Trade Exception Count,22.0
+Settlement Exception Count,54.0
+Broker Confirmation Coverage,0.9583
+Settlement Completion Rate,0.6174
+Trade Exception Rate,0.1833
+Settlement Exception Rate,0.45

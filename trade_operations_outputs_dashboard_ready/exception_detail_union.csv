@@ -1,0 +1,77 @@
+trade_id,asset,exception_type,severity,description,Exception Stage
+T00003,AUDUSD,Quantity Mismatch,High,Internal quantity 10200 differs from confirmed quantity 10300.0.,Trade Confirmation
+T00003,AUDUSD,PnL Variance,Medium,Expected PnL and reported PnL differ by 248.96.,Trade Confirmation
+T00006,EURUSD,Price Discrepancy,Medium,"Execution price and confirmed price differ by 1.01%, exceeding tolerance.",Trade Confirmation
+T00007,AUDUSD,Price Discrepancy,Medium,"Execution price and confirmed price differ by 1.01%, exceeding tolerance.",Trade Confirmation
+T00014,EURUSD,PnL Variance,Medium,Expected PnL and reported PnL differ by 247.20.,Trade Confirmation
+T00017,AUDUSD,PnL Variance,Medium,Expected PnL and reported PnL differ by 249.90.,Trade Confirmation
+T00020,NASDAQ100,PnL Variance,Medium,Expected PnL and reported PnL differ by 247.04.,Trade Confirmation
+T00025,AUDUSD,Quantity Mismatch,High,Internal quantity 19700 differs from confirmed quantity 19800.0.,Trade Confirmation
+T00026,GOLD,PnL Variance,Medium,Expected PnL and reported PnL differ by 254.07.,Trade Confirmation
+T00042,NASDAQ100,Quantity Mismatch,High,Internal quantity 6400 differs from confirmed quantity 6500.0.,Trade Confirmation
+T00042,NASDAQ100,PnL Variance,Medium,Expected PnL and reported PnL differ by 253.14.,Trade Confirmation
+T00055,EURUSD,Missing Broker Confirmation,High,Internal trade record has no matching broker confirmation.,Trade Confirmation
+T00056,SP500,Quantity Mismatch,High,Internal quantity 9900 differs from confirmed quantity 10000.0.,Trade Confirmation
+T00060,NASDAQ100,Missing Broker Confirmation,High,Internal trade record has no matching broker confirmation.,Trade Confirmation
+T00075,AUDUSD,Quantity Mismatch,High,Internal quantity 11500 differs from confirmed quantity 11600.0.,Trade Confirmation
+T00078,AUDUSD,Missing Broker Confirmation,High,Internal trade record has no matching broker confirmation.,Trade Confirmation
+T00096,NASDAQ100,Missing Broker Confirmation,High,Internal trade record has no matching broker confirmation.,Trade Confirmation
+T00102,GOLD,Price Discrepancy,Medium,"Execution price and confirmed price differ by 1.00%, exceeding tolerance.",Trade Confirmation
+T00104,GOLD,Price Discrepancy,Medium,"Execution price and confirmed price differ by 0.97%, exceeding tolerance.",Trade Confirmation
+T00107,NASDAQ100,Quantity Mismatch,High,Internal quantity 14800 differs from confirmed quantity 14900.0.,Trade Confirmation
+T00112,EURUSD,Price Discrepancy,Medium,"Execution price and confirmed price differ by 0.99%, exceeding tolerance.",Trade Confirmation
+T00118,AUDUSD,Missing Broker Confirmation,High,Internal trade record has no matching broker confirmation.,Trade Confirmation
+T00002,SP500,Settlement Not Completed,High,Settlement status is FAILED.,Settlement
+T00005,GOLD,Settlement Not Completed,High,Settlement status is PENDING.,Settlement
+T00009,AUDUSD,Settlement Not Completed,High,Settlement status is FAILED.,Settlement
+T00010,NASDAQ100,Settlement Not Completed,High,Settlement status is PENDING.,Settlement
+T00012,GOLD,Settlement Not Completed,High,Settlement status is PENDING.,Settlement
+T00014,EURUSD,Settlement Not Completed,High,Settlement status is FAILED.,Settlement
+T00018,EURUSD,Settlement Delay,Medium,Settlement lag is 7.0 days.,Settlement
+T00020,NASDAQ100,Settlement Not Completed,High,Settlement status is PENDING.,Settlement
+T00021,AUDUSD,Settlement Not Completed,High,Settlement status is FAILED.,Settlement
+T00024,NASDAQ100,Settlement Delay,Medium,Settlement lag is 7.0 days.,Settlement
+T00027,NASDAQ100,Settlement Not Completed,High,Settlement status is FAILED.,Settlement
+T00028,GOLD,Settlement Not Completed,High,Settlement status is PENDING.,Settlement
+T00033,EURUSD,Settlement Not Completed,High,Settlement status is PENDING.,Settlement
+T00036,EURUSD,Settlement Not Completed,High,Settlement status is FAILED.,Settlement
+T00037,AUDUSD,Settlement Not Completed,High,Settlement status is PENDING.,Settlement
+T00038,EURUSD,Settlement Delay,Medium,Settlement lag is 7.0 days.,Settlement
+T00039,SP500,Settlement Not Completed,High,Settlement status is PENDING.,Settlement
+T00043,SP500,Settlement Not Completed,High,Settlement status is FAILED.,Settlement
+T00043,SP500,Settlement Delay,Medium,Settlement lag is 8.0 days.,Settlement
+T00045,EURUSD,Settlement Not Completed,High,Settlement status is PENDING.,Settlement
+T00048,SP500,Settlement Not Completed,High,Settlement status is PENDING.,Settlement
+T00052,AUDUSD,Settlement Not Completed,High,Settlement status is FAILED.,Settlement
+T00053,NASDAQ100,Settlement Not Completed,High,Settlement status is PENDING.,Settlement
+T00055,EURUSD,Missing Settlement Record,High,Confirmed or internal trade has no settlement record.,Settlement
+T00059,NASDAQ100,Settlement Not Completed,High,Settlement status is FAILED.,Settlement
+T00060,NASDAQ100,Missing Settlement Record,High,Confirmed or internal trade has no settlement record.,Settlement
+T00061,SP500,Settlement Not Completed,High,Settlement status is FAILED.,Settlement
+T00064,EURUSD,Settlement Not Completed,High,Settlement status is FAILED.,Settlement
+T00065,GOLD,Settlement Not Completed,High,Settlement status is FAILED.,Settlement
+T00066,AUDUSD,Settlement Not Completed,High,Settlement status is PENDING.,Settlement
+T00071,AUDUSD,Settlement Not Completed,High,Settlement status is FAILED.,Settlement
+T00072,AUDUSD,Settlement Not Completed,High,Settlement status is PENDING.,Settlement
+T00074,GOLD,Settlement Not Completed,High,Settlement status is PENDING.,Settlement
+T00075,AUDUSD,Settlement Not Completed,High,Settlement status is PENDING.,Settlement
+T00077,GOLD,Settlement Not Completed,High,Settlement status is PENDING.,Settlement
+T00078,AUDUSD,Missing Settlement Record,High,Confirmed or internal trade has no settlement record.,Settlement
+T00086,NASDAQ100,Settlement Not Completed,High,Settlement status is FAILED.,Settlement
+T00087,SP500,Settlement Not Completed,High,Settlement status is PENDING.,Settlement
+T00088,AUDUSD,Settlement Not Completed,High,Settlement status is FAILED.,Settlement
+T00090,GOLD,Settlement Not Completed,High,Settlement status is PENDING.,Settlement
+T00092,EURUSD,Settlement Not Completed,High,Settlement status is PENDING.,Settlement
+T00094,EURUSD,Settlement Not Completed,High,Settlement status is PENDING.,Settlement
+T00096,NASDAQ100,Missing Settlement Record,High,Confirmed or internal trade has no settlement record.,Settlement
+T00097,SP500,Settlement Not Completed,High,Settlement status is PENDING.,Settlement
+T00097,SP500,Settlement Delay,Medium,Settlement lag is 7.0 days.,Settlement
+T00100,NASDAQ100,Settlement Not Completed,High,Settlement status is FAILED.,Settlement
+T00102,GOLD,Settlement Not Completed,High,Settlement status is PENDING.,Settlement
+T00103,EURUSD,Settlement Not Completed,High,Settlement status is FAILED.,Settlement
+T00109,AUDUSD,Settlement Not Completed,High,Settlement status is FAILED.,Settlement
+T00111,NASDAQ100,Settlement Not Completed,High,Settlement status is PENDING.,Settlement
+T00113,AUDUSD,Settlement Not Completed,High,Settlement status is FAILED.,Settlement
+T00115,SP500,Settlement Not Completed,High,Settlement status is PENDING.,Settlement
+T00117,SP500,Settlement Not Completed,High,Settlement status is FAILED.,Settlement
+T00118,AUDUSD,Missing Settlement Record,High,Confirmed or internal trade has no settlement record.,Settlement
