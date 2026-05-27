@@ -290,8 +290,6 @@ This dashboard helps stakeholders compare asset-level strategy performance, iden
 
 **Interactive Dashboard:** [View on Tableau Public](https://public.tableau.com/views/Dashboard2TradeOperationsReconciliationExceptionMonitoring_17799001041320/TradeOperationsMonitoring?:language=zh-CN&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
-![Trade Operations Reconciliation & Exception Monitoring Dashboard](dashboard/tableau/Trade_Operations_Monitoring.png)
-
 ![Trade Operations Reconciliation & Exception Monitoring](dashboard/tableau/Trade_Operations_Monitoring.png)
 
 This dashboard focuses on post-trade operations monitoring. It includes:
