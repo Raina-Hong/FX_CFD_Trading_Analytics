@@ -263,9 +263,10 @@ Two Tableau dashboards were created to communicate the results in a business-fac
 
 ### 8.1 Dashboard 1: FX & CFD Trading Performance Dashboard
 
-**Interactive dashboard:** [FX & CFD Trading Performance Dashboard](https://public.tableau.com/views/Dashboard1FXCFDTradingPerformanceDashboard/FXCFDTradingPerformanceDashboard?:language=zh-CN&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
+**Interactive Dashboard:** [FX & CFD Trading Performance Dashboard](https://public.tableau.com/views/Dashboard1FXCFDTradingPerformanceDashboard/FXCFDTradingPerformanceDashboard?:language=zh-CN&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
 ![FX & CFD Trading Performance Dashboard](dashboard/tableau/FX_CFD_Trading_Performance_Dashboard.png)
+
 
 This dashboard focuses on strategy performance after transaction costs. It includes:
 
@@ -287,7 +288,9 @@ This dashboard helps stakeholders compare asset-level strategy performance, iden
 
 ### 8.2 Dashboard 2: Trade Operations Reconciliation & Exception Monitoring
 
-**Interactive dashboard:** [Trade Operations Monitoring Dashboard](https://public.tableau.com/views/Dashboard2TradeOperationsReconciliationExceptionMonitoring_17799001041320/TradeOperationsMonitoring?:language=zh-CN&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
+**Interactive Dashboard:** [View on Tableau Public](https://public.tableau.com/views/Dashboard2TradeOperationsReconciliationExceptionMonitoring_17799001041320/TradeOperationsMonitoring?:language=zh-CN&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
+
+![Trade Operations Reconciliation & Exception Monitoring Dashboard](dashboard/tableau/Trade_Operations_Monitoring.png)
 
 ![Trade Operations Reconciliation & Exception Monitoring](dashboard/tableau/Trade_Operations_Monitoring.png)
 
